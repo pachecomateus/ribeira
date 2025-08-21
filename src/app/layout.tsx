@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Montserrat } from "next/font/google";
 import localFont from "next/font/local";
 import "./globals.css";
-import { GoogleTagManager } from "@next/third-parties/google";
+// import { GoogleTagManager } from "@next/third-parties/google";
 import { Analytics } from "@vercel/analytics/next";
 
 const behindTheNineties = localFont({
@@ -28,10 +28,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="pt-BR">
-      <GoogleTagManager gtmId="" />
+    <html lang="pt-BR" className="bg-[#efeeea]">
+      {/* <GoogleTagManager gtmId="" /> */}
       <body
-        className={`${montserrat.variable} ${behindTheNineties.variable} antialiased`}
+        className={`${montserrat.variable} ${behindTheNineties.variable} antialiased]`}
       >
         {children}
         <Analytics />
