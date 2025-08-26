@@ -18,7 +18,7 @@ const montserrat = Montserrat({
 })
 
 export const metadata: Metadata = {
-  title: "Máximo - Ribeira",
+  title: "Ribeira",
   description: "O lançamento mais aguardado de Braz Cubas",
 };
 
