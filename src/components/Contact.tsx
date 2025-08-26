@@ -23,7 +23,7 @@ export default function Contact() {
     };
 
     try {
-      const response = await fetch("https://api.rd.services/platform/conversions?api_key=e1b39558ec3f5391366b8b0e70800e62", {
+      const responseRD = await fetch("https://api.rd.services/platform/conversions?api_key=e1b39558ec3f5391366b8b0e70800e62", {
         method: "POST",
         headers: {
           accept: "application/json",
@@ -35,12 +35,31 @@ export default function Contact() {
           payload: payload
         })
       });
-      if (response.ok) {
+
+      formData.append("access_key", "53b390a1-a9f7-4eb0-b126-3dd5ee716720");
+
+      const object = Object.fromEntries(formData);
+      const json = JSON.stringify(object);
+
+      const responseEmail = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json"
+        },
+        body: json
+      });
+
+      const resultEmail = await responseEmail.json();
+
+      if (responseRD.ok && resultEmail.success) {
         setLoading(false);
         // setSuccess(true);
+        console.log(resultEmail);
         router.push("/obrigado");
       } else {
         setLoading(false);
+        console.log(resultEmail);
         setError(true);
       }
     } catch (err) {
@@ -61,8 +80,8 @@ export default function Contact() {
         {/* {success && <p className="text-center px-12 text-primary text-lg 2xl:text-2xl">Obrigado! <br /> Seus dados foram enviados com sucesso, em breve entraremos em contato.</p>} */}
         {!error && !success && (
           <form onSubmit={handleSubmit} className="flex flex-col gap-5 min-w-[300px] lg:min-w-[400px] 2xl:min-w-[450px] m-auto font-normal text-lg">
-            {/* <input type="hidden" name="subject" value="Novo lead recebido" />
-            <input type="hidden" name="from_name" value="innerhaus.com.br" /> */}
+            <input type="hidden" name="subject" value="Novo lead recebido" />
+            <input type="hidden" name="from_name" value="maximobrazcubas.com.br" />
             <input required type="text" name="name" placeholder="Nome" className="bg-white rounded-full px-6 py-2 outline-primary border-primary border placeholder:text-primary" minLength={2} maxLength={50} />
             <input required type="tel" name="phone" placeholder="Telefone" className="bg-white rounded-full px-6 py-2 outline-primary border-primary border placeholder:text-primary" minLength={8} maxLength={20} />
             <input required type="email" name="email" placeholder="E-mail" className="bg-white rounded-full px-6 py-2 outline-primary border-primary border placeholder:text-primary" maxLength={50} />
