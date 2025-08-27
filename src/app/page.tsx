@@ -13,10 +13,11 @@ export default function Home() {
           Vem aí o lançamento <br /> mais aguardado de <br className="block md:hidden" /> <span className="text-secondary font-semibold">Braz Cubas</span>
         </h2>
         <Image
-          src="/imagem-site-maximo.png"
+          src="/maximo.jpeg"
           alt="Máximo - Ribeira"
           width={2000}
           height={2000}
+          quality={100}
           className="lg:max-w-[95%] h-full object-cover object-center lg:object-right z-0"
           priority
         />
